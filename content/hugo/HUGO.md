@@ -14,10 +14,59 @@ draft: true
     完全的皮肤支持。
     可以部署在任何的支持 HTTP 的服务器上。
 
+# Hugo 官方下载地址
+```
+https://github.com/gohugoio/hugo/releases
+```
+
+# Hugo 官网资料
+```
+#doc
+https://gohugo.io/getting-started/installing/
+#主题
+https://themes.gohugo.io/
+```
+
+# Hugo 命令
+```
+查看版本
+hugo version
+
+```
+
 # Hugo 创建
 ```
 hugo new site hlcooll
 ```
+
+# Hugo 安装主题
+```
+cd themes/
+git clone https://github.com/spf13/hyde.git
+
+```
+
+# 修改config.toml
+```
+baseURL = "https://hlcooll.github.io/"
+languageCode = "en-us"
+#HTML的title标题
+title = "hlcooll"
+#主题
+theme = "hyde"
+#菜单栏
+[Menus]
+  main = [
+      {Name = "Github", URL = "https://github.com/hlcooll"},  
+  ]
+
+[params]
+  description = "blog"
+  themeColor = "theme-base-0d"
+  layoutReverse = true
+
+```
+
 
 # Hugo 启动服务
 ```
@@ -28,9 +77,10 @@ hugo server --theme=hyde --buildDrafts --watch
 
 # Hugo 生成静态文件
 ```
-// baseurl 需要修改为  自己的page地址    hugo-nuo  为我当前使用的 hugo主题。
+// baseurl 需要修改为自己的page地址,hyde当前使用的hugo主题
 hugo --theme=hyde --buildDrafts --baseUrl="https://hlcooll.github.io/public/"
 ```
+
 
 
 

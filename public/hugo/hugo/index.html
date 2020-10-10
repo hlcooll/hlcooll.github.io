@@ -61,14 +61,47 @@
 完全的皮肤支持。
 可以部署在任何的支持 HTTP 的服务器上。
 </code></pre>
-<h1 id="hugo-创建">Hugo 创建</h1>
+<h1 id="hugo-官方下载地址">Hugo 官方下载地址</h1>
+<pre><code>https://github.com/gohugoio/hugo/releases
+</code></pre><h1 id="hugo-官网资料">Hugo 官网资料</h1>
+<pre><code>#doc
+https://gohugo.io/getting-started/installing/
+#主题
+https://themes.gohugo.io/
+</code></pre><h1 id="hugo-命令">Hugo 命令</h1>
+<pre><code>查看版本
+hugo version
+
+</code></pre><h1 id="hugo-创建">Hugo 创建</h1>
 <pre><code>hugo new site hlcooll
+</code></pre><h1 id="hugo-安装主题">Hugo 安装主题</h1>
+<pre><code>cd themes/
+git clone https://github.com/spf13/hyde.git
+
+</code></pre><h1 id="修改configtoml">修改config.toml</h1>
+<pre><code>baseURL = &quot;https://hlcooll.github.io/&quot;
+languageCode = &quot;en-us&quot;
+#HTML的title标题
+title = &quot;hlcooll&quot;
+#主题
+theme = &quot;hyde&quot;
+#菜单栏
+[Menus]
+  main = [
+      {Name = &quot;Github&quot;, URL = &quot;https://github.com/hlcooll&quot;},  
+  ]
+
+[params]
+  description = &quot;blog&quot;
+  themeColor = &quot;theme-base-0d&quot;
+  layoutReverse = true
+
 </code></pre><h1 id="hugo-启动服务">Hugo 启动服务</h1>
 <pre><code>hugo server --theme=hyde --port 1314 --buildDrafts
 hugo server -t hyde --port 1333 --buildDrafts
 hugo server --theme=hyde --buildDrafts --watch
 </code></pre><h1 id="hugo-生成静态文件">Hugo 生成静态文件</h1>
-<pre><code>// baseurl 需要修改为  自己的page地址    hugo-nuo  为我当前使用的 hugo主题。
+<pre><code>// baseurl 需要修改为自己的page地址,hyde当前使用的hugo主题
 hugo --theme=hyde --buildDrafts --baseUrl=&quot;https://hlcooll.github.io/public/&quot;
 </code></pre>
 </div>
