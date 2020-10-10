@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on hlcooll</title>
+    <link>http://hlcooll.github.io/public/post/</link>
+    <description>Recent content in Posts on hlcooll</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Sep 2020 11:10:42 +0800</lastBuildDate>
+    
+	<atom:link href="http://hlcooll.github.io/public/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ceshi</title>
+      <link>http://hlcooll.github.io/public/post/ceshi/</link>
+      <pubDate>Tue, 15 Sep 2020 11:10:42 +0800</pubDate>
+      
+      <guid>http://hlcooll.github.io/public/post/ceshi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HELM</title>
+      <link>http://hlcooll.github.io/public/post/helm/</link>
+      <pubDate>Tue, 15 Sep 2020 10:56:53 +0800</pubDate>
+      
+      <guid>http://hlcooll.github.io/public/post/helm/</guid>
+      <description>ssss</description>
+    </item>
+    
+    <item>
+      <title>First</title>
+      <link>http://hlcooll.github.io/public/post/first/</link>
+      <pubDate>Mon, 14 Sep 2020 14:31:26 +0800</pubDate>
+      
+      <guid>http://hlcooll.github.io/public/post/first/</guid>
+      <description>first</description>
+    </item>
+    
+  </channel>
+</rss>
