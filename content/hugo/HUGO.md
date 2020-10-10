@@ -110,6 +110,11 @@ hugo --theme=hyde --buildDrafts --baseUrl="https://hlcooll.github.io/public/"
 #Github pages 
 https://pages.github.com/
 
+git add -A
+
+git commit -m "updates $(date)"
+
+git push origin master
 
 ```
 
