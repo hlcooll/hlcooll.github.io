@@ -77,7 +77,7 @@ hugo server --theme=hyde --buildDrafts --watch
 
 # Hugo 生成静态文件
 ```
-// baseurl 需要修改为自己的page地址,hyde当前使用的hugo主题
+// baseurl 需要修改为自己的page地址,hyde当前使用的hugo主题！生成静态文件public
 hugo --theme=hyde --buildDrafts --baseUrl="https://hlcooll.github.io/public/"
 ```
 
