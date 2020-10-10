@@ -15,7 +15,6 @@ theme = "hyde"
   description = "blog"
   themeColor = "theme-base-0d"
   layoutReverse = true
-
-
-  
+  disqusShortname = "spf13"
+  googleAnalytics = "UA-180227187-1"
 

@@ -41,6 +41,7 @@ hugo new site hlcooll
 
 # Hugo 安装主题
 ```
+# 主题地址https://themes.gohugo.io/hyde/
 cd themes/
 git clone https://github.com/spf13/hyde.git
 
@@ -54,7 +55,7 @@ languageCode = "en-us"
 title = "hlcooll"
 #主题
 theme = "hyde"
-#菜单栏
+#侧边栏菜单
 [Menus]
   main = [
       {Name = "Github", URL = "https://github.com/hlcooll"},  
@@ -62,11 +63,34 @@ theme = "hyde"
 
 [params]
   description = "blog"
+  #配色主题
   themeColor = "theme-base-0d"
+  #反向布局
   layoutReverse = true
+  #启用由Disqus提供的评论系统来发布帖子
+  disqusShortname = "spf13"
+  #谷歌分析跟踪代码 https://analytics.google.com/
+  googleAnalytics = "UA-180227187-1"
 
 ```
 
+# Sticky sidebar content
+```
+<!-- Default sidebar -->
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    ...
+  </div>
+</div>
+
+<!-- Modified sidebar -->
+<div class="sidebar">
+  <div class="container">
+    ...
+  </div>
+</div>
+
+```
 
 # Hugo 启动服务
 ```
@@ -81,6 +105,12 @@ hugo server --theme=hyde --buildDrafts --watch
 hugo --theme=hyde --buildDrafts --baseUrl="https://hlcooll.github.io/public/"
 ```
 
+# Hugo 上传github
+```
+#Github pages 
+https://pages.github.com/
 
+
+```
 
 

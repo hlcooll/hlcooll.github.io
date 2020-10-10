@@ -75,7 +75,8 @@ hugo version
 </code></pre><h1 id="hugo-创建">Hugo 创建</h1>
 <pre><code>hugo new site hlcooll
 </code></pre><h1 id="hugo-安装主题">Hugo 安装主题</h1>
-<pre><code>cd themes/
+<pre><code># 主题地址https://themes.gohugo.io/hyde/
+cd themes/
 git clone https://github.com/spf13/hyde.git
 
 </code></pre><h1 id="修改configtoml">修改config.toml</h1>
@@ -85,7 +86,7 @@ languageCode = &quot;en-us&quot;
 title = &quot;hlcooll&quot;
 #主题
 theme = &quot;hyde&quot;
-#菜单栏
+#侧边栏菜单
 [Menus]
   main = [
       {Name = &quot;Github&quot;, URL = &quot;https://github.com/hlcooll&quot;},  
@@ -93,8 +94,29 @@ theme = &quot;hyde&quot;
 
 [params]
   description = &quot;blog&quot;
+  #配色主题
   themeColor = &quot;theme-base-0d&quot;
+  #反向布局
   layoutReverse = true
+  #启用由Disqus提供的评论系统来发布帖子
+  disqusShortname = &quot;spf13&quot;
+  #谷歌分析跟踪代码 https://analytics.google.com/
+  googleAnalytics = &quot;UA-180227187-1&quot;
+
+</code></pre><h1 id="sticky-sidebar-content">Sticky sidebar content</h1>
+<pre><code>&lt;!-- Default sidebar --&gt;
+&lt;div class=&quot;sidebar&quot;&gt;
+  &lt;div class=&quot;container sidebar-sticky&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Modified sidebar --&gt;
+&lt;div class=&quot;sidebar&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
 
 </code></pre><h1 id="hugo-启动服务">Hugo 启动服务</h1>
 <pre><code>hugo server --theme=hyde --port 1314 --buildDrafts
@@ -103,6 +125,11 @@ hugo server --theme=hyde --buildDrafts --watch
 </code></pre><h1 id="hugo-生成静态文件">Hugo 生成静态文件</h1>
 <pre><code>// baseurl 需要修改为自己的page地址,hyde当前使用的hugo主题！生成静态文件public
 hugo --theme=hyde --buildDrafts --baseUrl=&quot;https://hlcooll.github.io/public/&quot;
+</code></pre><h1 id="hugo-上传github">Hugo 上传github</h1>
+<pre><code>#Github pages 
+https://pages.github.com/
+
+
 </code></pre>
 </div>
 
