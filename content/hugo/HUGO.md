@@ -23,9 +23,14 @@ hugo new site hlcooll
 ```
 hugo server --theme=hyde --port 1314 --buildDrafts
 hugo server -t hyde --port 1333 --buildDrafts
+hugo server --theme=hyde --buildDrafts --watch
 ```
 
-
+# Hugo 生成静态文件
+```
+// baseurl 需要修改为  自己的page地址    hugo-nuo  为我当前使用的 hugo主题。
+hugo --theme=hyde --buildDrafts --baseUrl="https://hlcooll.github.io/public/"
+```
 
 
 
