@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kubernetes on hlcooll</title>
-    <link>http://hlcooll.github.io/public/kubernetes/</link>
+    <link>https://hlcooll.github.io/public/kubernetes/</link>
     <description>Recent content in Kubernetes on hlcooll</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Sep 2020 11:11:04 +0800</lastBuildDate>
     
-	<atom:link href="http://hlcooll.github.io/public/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hlcooll.github.io/public/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ceshi</title>
-      <link>http://hlcooll.github.io/public/kubernetes/ceshi/</link>
+      <link>https://hlcooll.github.io/public/kubernetes/ceshi/</link>
       <pubDate>Tue, 15 Sep 2020 11:11:04 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/kubernetes/ceshi/</guid>
+      <guid>https://hlcooll.github.io/public/kubernetes/ceshi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubernetes</title>
-      <link>http://hlcooll.github.io/public/kubernetes/kubernetes/</link>
+      <link>https://hlcooll.github.io/public/kubernetes/kubernetes/</link>
       <pubDate>Mon, 14 Sep 2020 17:43:50 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/kubernetes/kubernetes/</guid>
+      <guid>https://hlcooll.github.io/public/kubernetes/kubernetes/</guid>
       <description></description>
     </item>
     

@@ -2,75 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hlcooll</title>
-    <link>http://hlcooll.github.io/public/</link>
+    <link>https://hlcooll.github.io/public/</link>
     <description>Recent content on hlcooll</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Sep 2020 14:37:56 +0800</lastBuildDate>
     
-	<atom:link href="http://hlcooll.github.io/public/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hlcooll.github.io/public/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>HUGO</title>
-      <link>http://hlcooll.github.io/public/hugo/hugo/</link>
+      <link>https://hlcooll.github.io/public/hugo/hugo/</link>
       <pubDate>Tue, 15 Sep 2020 14:37:56 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/hugo/hugo/</guid>
+      <guid>https://hlcooll.github.io/public/hugo/hugo/</guid>
       <description>Hugo 能做什么 通过 Hugo 你可以快速搭建你的静态网站，比如博客系统、文档介绍、公司主页、产品介绍等等。相对于其他静态网站生成器来说，Hugo 具备如下特点： 极快的页面编译生成速度。（ ~1 ms 每页面） 完全跨平台支持，可以运行在 Mac OS X, Linux, Windows, 以及更多! 安装方便 Installation 本地调试 Usage 时通过 LiveReload 自动即时刷新页面。 完全的皮肤支持。 可以部署在任何的支持 HTTP 的服务器上。  Hugo 创建 hugo new site hlcooll Hugo 启动服务 hugo server --theme=hyde --port 1314 --buildDrafts hugo server -t hyde --port 1333 --buildDrafts </description>
     </item>
     
     <item>
       <title>Ceshi</title>
-      <link>http://hlcooll.github.io/public/kubernetes/ceshi/</link>
+      <link>https://hlcooll.github.io/public/kubernetes/ceshi/</link>
       <pubDate>Tue, 15 Sep 2020 11:11:04 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/kubernetes/ceshi/</guid>
+      <guid>https://hlcooll.github.io/public/kubernetes/ceshi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ceshi</title>
-      <link>http://hlcooll.github.io/public/post/ceshi/</link>
+      <link>https://hlcooll.github.io/public/post/ceshi/</link>
       <pubDate>Tue, 15 Sep 2020 11:10:42 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/post/ceshi/</guid>
+      <guid>https://hlcooll.github.io/public/post/ceshi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HELM</title>
-      <link>http://hlcooll.github.io/public/post/helm/</link>
+      <link>https://hlcooll.github.io/public/post/helm/</link>
       <pubDate>Tue, 15 Sep 2020 10:56:53 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/post/helm/</guid>
+      <guid>https://hlcooll.github.io/public/post/helm/</guid>
       <description>ssss</description>
     </item>
     
     <item>
       <title>Kubernetes</title>
-      <link>http://hlcooll.github.io/public/kubernetes/kubernetes/</link>
+      <link>https://hlcooll.github.io/public/kubernetes/kubernetes/</link>
       <pubDate>Mon, 14 Sep 2020 17:43:50 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/kubernetes/kubernetes/</guid>
+      <guid>https://hlcooll.github.io/public/kubernetes/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>About</title>
-      <link>http://hlcooll.github.io/public/about/</link>
+      <link>https://hlcooll.github.io/public/about/</link>
       <pubDate>Mon, 14 Sep 2020 17:38:57 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/about/</guid>
+      <guid>https://hlcooll.github.io/public/about/</guid>
       <description>A headline Some Content</description>
     </item>
     
     <item>
       <title>First</title>
-      <link>http://hlcooll.github.io/public/post/first/</link>
+      <link>https://hlcooll.github.io/public/post/first/</link>
       <pubDate>Mon, 14 Sep 2020 14:31:26 +0800</pubDate>
       
-      <guid>http://hlcooll.github.io/public/post/first/</guid>
+      <guid>https://hlcooll.github.io/public/post/first/</guid>
       <description>first</description>
     </item>
     
