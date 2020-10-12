@@ -6,10 +6,28 @@
     <description>Recent content on hlcooll</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 14:37:56 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2020 11:15:57 +0800</lastBuildDate>
     
 	<atom:link href="https://hlcooll.github.io/public/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>K8s Affinity</title>
+      <link>https://hlcooll.github.io/public/kubernetes/k8s-affinity/</link>
+      <pubDate>Mon, 12 Oct 2020 11:15:57 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/kubernetes/k8s-affinity/</guid>
+      <description>k8s学习笔记-调度之Affinity Kubernetes中的调度策略可以大致分为两种 一种是全局的调度策略，要在启动调度器时配置，包括kubernetes调度器自带的各种predicates和priorities算法，具体可以参看上一篇文章； 另一种是运行时调度策略，包括nodeAffinity（主机亲和性），podAffinity（POD亲和性）以及podAntiAffinity（POD反亲和性）。 nodeAffinity 主要解决POD要部署在哪些主机，以及POD不能部署在哪些主机上的问题，处理的是POD和主机之间的关系。 podAffinity 主要解决POD可以和哪些POD部署在同一个拓扑域中的问题（拓扑域用主机标签实现，可以是单个主机，也可以是多个主机组成的cluster、zone等。） podAntiAffinity主要解决POD不能和哪些POD部署在同一个拓扑域中的问题。它们处理的是Kubernetes集群内部POD和POD之间的关系。 三种亲和性和反亲和性策略的比较如下表所示： 策略名称	匹配目标	支持的操作符	支持拓扑域	设计目标 nodeAffinity	主机标签	In，NotIn，Exists，DoesNotExist，Gt，Lt	不支持	决定Pod可以部署在哪些主机上 podAffinity	Pod标签	In，NotIn，Exists，DoesNotExist	支持	决定Pod可以和哪些Pod部署在同一拓扑域 PodAntiAffinity	Pod标签	In，NotIn，Exists，DoesNotExist	支持	决定Pod不可以和哪些Pod部署在同一拓扑域 亲和性：应用A与应用B两个应用频繁交互，所以有必要利用亲和性让两个应用的尽可能的靠近，甚至在一个node上，以减少因网络通信而带来的性能损耗。 反亲和性：当应用的采用多副本部署时，有必要采用反亲和性让各个应用实例打散分布在各个node上，以提高HA。 主要介绍kubernetes的中调度算法中的Node affinity和Pod affinity用法 实际上是对前文提到的优选策略中的NodeAffinityPriority策略和InterPodAffinityPriority策略的具体应用。 kubectl explain pods.spec.affinity 亲和性策略（Affinity）能够提供比NodeSelector或者Taints更灵活丰富的调度方式，例如： 丰富的匹配表达式（In, NotIn, Exists, DoesNotExist. Gt, and Lt） 软约束和硬约束（Required/Preferred） 以节点上的其他Pod作为参照物进行调度计算 亲和性策略分为NodeAffinityPriority策略和InterPodAffinityPriority策略。 先回顾一下之前的节点选择器 节点选择器： nodeSelector nodeName 创建一个Pod 节点选择器标签 nodeSelector: disktype: ssd 默认节点没这个标签：所以会调度失败 [root@k8s-master schedule]# kubectl get node --show-labels|egrep disktype [root@k8s-master schedule]# kubectl get pods NAME READY STATUS RESTARTS AGE pod-demo 0/1 Pending 0 11s [root@k8s-master schedule]# kubectl describe pod pod-demo Warning FailedScheduling 28s (x2 over 28s) default-scheduler 0/3 nodes are available: 3 node(s) didn&#39;t match node selector.</description>
+    </item>
+    
+    <item>
+      <title>Archetypes New</title>
+      <link>https://hlcooll.github.io/public/hugo/archetypes-new/</link>
+      <pubDate>Sat, 10 Oct 2020 13:54:11 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/hugo/archetypes-new/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>HUGO</title>
@@ -18,15 +36,6 @@
       
       <guid>https://hlcooll.github.io/public/hugo/hugo/</guid>
       <description>Hugo 能做什么 通过 Hugo 你可以快速搭建你的静态网站，比如博客系统、文档介绍、公司主页、产品介绍等等。相对于其他静态网站生成器来说，Hugo 具备如下特点： 极快的页面编译生成速度。（ ~1 ms 每页面） 完全跨平台支持，可以运行在 Mac OS X, Linux, Windows, 以及更多! 安装方便 Installation 本地调试 Usage 时通过 LiveReload 自动即时刷新页面。 完全的皮肤支持。 可以部署在任何的支持 HTTP 的服务器上。  Hugo 官方下载地址 https://github.com/gohugoio/hugo/releases Hugo 官网资料 #doc https://gohugo.io/getting-started/installing/ #主题 https://themes.gohugo.io/ Hugo 命令 查看版本 hugo version Hugo 创建 hugo new site hlcooll Hugo 安装主题 # 主题地址https://themes.gohugo.io/hyde/ cd themes/ git clone https://github.com/spf13/hyde.git 修改config.toml baseURL = &amp;quot;https://hlcooll.github.io/&amp;quot; languageCode = &amp;quot;en-us&amp;quot; #HTML的title标题 title = &amp;quot;hlcooll&amp;quot; #主题 theme = &amp;quot;hyde&amp;quot; #侧边栏菜单 [Menus] main = [ {Name = &amp;quot;Github&amp;quot;, URL = &amp;quot;https://github.</description>
-    </item>
-    
-    <item>
-      <title>Ceshi</title>
-      <link>https://hlcooll.github.io/public/kubernetes/ceshi/</link>
-      <pubDate>Tue, 15 Sep 2020 11:11:04 +0800</pubDate>
-      
-      <guid>https://hlcooll.github.io/public/kubernetes/ceshi/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -57,21 +66,12 @@
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://hlcooll.github.io/public/about/</link>
-      <pubDate>Mon, 14 Sep 2020 17:38:57 +0800</pubDate>
-      
-      <guid>https://hlcooll.github.io/public/about/</guid>
-      <description>A headline Some Content</description>
-    </item>
-    
-    <item>
       <title>First</title>
       <link>https://hlcooll.github.io/public/post/first/</link>
       <pubDate>Mon, 14 Sep 2020 14:31:26 +0800</pubDate>
       
       <guid>https://hlcooll.github.io/public/post/first/</guid>
-      <description>first</description>
+      <description></description>
     </item>
     
   </channel>
