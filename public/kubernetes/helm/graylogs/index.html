@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Graylogs &middot; hlcooll</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://hlcooll.github.io/public/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://hlcooll.github.io/public/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://hlcooll.github.io/public/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://hlcooll.github.io/public/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-0d layout-reverse">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://hlcooll.github.io/public/"><h1>hlcooll</h1></a>
+      <p class="lead">
+       blog 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://hlcooll.github.io/public/">Home</a> </li>
+        <li><a href="https://github.com/hlcooll"> Github </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2020. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Graylogs</h1>
+  <time datetime=2020-10-16T10:12:53&#43;0800 class="post-date">Fri, Oct 16, 2020</time>
+  <p>#mongodb</p>
+<pre><code>#  Warning  FailedCreate      30s (x14 over 71s)  statefulset-controller  create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod &quot;mongodb-replicaset-1602575807-0&quot; is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1
+
+helm fetch  stable/mongodb-replicaset
+kubectl create namespace mongodb
+
+helm install mongodb-replicaset   --namespace &quot;graylog&quot; -n &quot;mongodb&quot; stable/mongodb-replicaset  --set persistentVolume.storageClass=&quot;nfs-client&quot;  --set startupProbe.successThreshold=&quot;1&quot;
+
+
+</code></pre><pre><code>WARNING: This chart is deprecated
+NAME: mongodb-replicaset
+LAST DEPLOYED: Fri Oct 16 10:17:48 2020
+NAMESPACE: mongodb
+STATUS: deployed
+REVISION: 1
+NOTES:
+*******************
+****DEPRECATED*****
+*******************
+*
+* This chart is deprecated and no longer maintained.
+*
+* It is recommended to use the Bitnami maintained MongoDB chart
+* (https://github.com/bitnami/charts/tree/master/bitnami/mongodb)
+* which has a similar feature set.
+
+
+1. After the statefulset is created completely, one can check which instance is primary by running:
+
+    $ for ((i = 0; i &lt; 3; ++i)); do kubectl exec --namespace mongodb mongodb-replicaset-$i -- sh -c 'mongo --eval=&quot;printjson(rs.isMaster())&quot;'; done
+
+2. One can insert a key into the primary instance of the mongodb replica set by running the following:
+    MASTER_POD_NAME must be replaced with the name of the master found from the previous step.
+
+    $ kubectl exec --namespace mongodb MASTER_POD_NAME -- mongo --eval=&quot;printjson(db.test.insert({key1: 'value1'}))&quot;
+
+3. One can fetch the keys stored in the primary or any of the slave nodes in the following manner.
+    POD_NAME must be replaced by the name of the pod being queried.
+
+    $ kubectl exec --namespace mongodb POD_NAME -- mongo --eval=&quot;rs.slaveOk(); db.test.find().forEach(printjson)&quot;
+
+</code></pre><h1 id="graylog-create">graylog create</h1>
+<pre><code>#GRAYLOG_HTTP_EXTERNAL_URI  html重定向路径
+      containers:
+        - name: graylog-master
+          image: graylog/graylog:3.3
+          env:
+          - name: TZ
+            value: &quot;Asia/Shanghai&quot;
+          - name: GRAYLOG_PASSWORD_SECRET
+            value: &quot;somepasswordpepper&quot;
+          - name: GRAYLOG_ROOT_PASSWORD_SHA2
+            value: &quot;8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918&quot;
+          - name: GRAYLOG_MONGODB_URI
+            #value: &quot;mongodb://mongo-mongodb:27017/graylog&quot;
+            value: &quot;mongodb://mongodb-replicaset-0.mongodb-replicaset.mongodb.svc.cluster.local:27017,mongodb-replicaset-1.mongodb-replicaset.mongodb.svc.cluster.local:27017,mongodb-replicaset-2.mongodb-replicaset.mongodb.svc.cluster.local:27017/graylog?replicaSet=rs0&quot;
+          - name: GRAYLOG_ROOT_TIMEZONE
+            value: &quot;PRC&quot;
+          - name: GRAYLOG_IS_MASTER
+            value: &quot;true&quot;
+          - name: GRAYLOG_ELASTICSEARCH_HOSTS
+            value: &quot;http://elasticsearch-0.elasticsearch.default.svc.cluster.local:9200, http://elasticsearch-1.elasticsearch.default.svc.cluster.local:9200, http://elasticsearch-2.elasticsearch.default.svc.cluster.local:9200&quot;
+          - name: GRAYLOG_WEB_ENDPOINT_URI
+            value: &quot;http://81.68.84.91:31300/api&quot;
+          - name: GRAYLOG_REST_LISTEN_URI
+            value: &quot;http://graylog.hlcooll.top/api/&quot;
+          - name: GRAYLOG_WEB_LISTEN_URI
+            value: &quot;http://graylog.hlcooll.top/&quot;
+          - name: GRAYLOG_HTTP_EXTERNAL_URI
+            value: &quot;http://graylog.hlcooll.top/&quot;
+          - name: GRAYLOG_REST_TRANSPORT_URI
+            value: &quot;http://graylog-master:9000/api/&quot;
+          - name: GRAYLOG_SERVER_JAVA_OPTS
+            value: &quot;-Xms1g -Xmx1g -XX:NewRatio=1 -XX:MaxMetaspaceSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow&quot;
+
+</code></pre><p>{{- $image := resources.Get “images/niko-photos-tGTVxeOr_Rs-unsplash.jpg” -}}</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

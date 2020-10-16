@@ -53,6 +53,41 @@
     <div class="posts">
 <article class="post">
   <h1 class="post-title">
+    <a href="https://hlcooll.github.io/public/kubernetes/helm/graylogs/">Graylogs</a>
+  </h1>
+  <time datetime="2020-10-16T10:12:53&#43;0800" class="post-date">Fri, Oct 16, 2020</time>
+  #mongodb
+# Warning FailedCreate 30s (x14 over 71s) statefulset-controller create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod &quot;mongodb-replicaset-1602575807-0&quot; is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1 helm fetch stable/mongodb-replicaset kubectl create namespace mongodb helm install mongodb-replicaset --namespace &quot;graylog&quot; -n &quot;mongodb&quot; stable/mongodb-replicaset --set persistentVolume.storageClass=&quot;nfs-client&quot; --set startupProbe.successThreshold=&quot;1&quot; WARNING: This chart is deprecated NAME: mongodb-replicaset LAST DEPLOYED: Fri Oct 16 10:17:48 2020 NAMESPACE: mongodb STATUS: deployed REVISION: 1 NOTES: ******************* ****DEPRECATED***** ******************* * * This chart is deprecated and no longer maintained.
+  
+  <div class="read-more-link">
+    <a href="/public/kubernetes/helm/graylogs/">Read More…</a>
+  </div>
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="https://hlcooll.github.io/public/kubernetes/helm/helm/">Helm</a>
+  </h1>
+  <time datetime="2020-10-15T18:03:52&#43;0800" class="post-date">Thu, Oct 15, 2020</time>
+  #安装Helm3
+#下载： wget https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz curl -L -o helm-v3.2.4-linux-amd64.tar.gz https://file.choerodon.com.cn/kubernetes-helm/v3.2.4/helm-v3.2.4-linux-amd64.tar.gz #官方安装文档 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get &gt; get_helm.sh 解压压缩包（以linux-amd64为例） tar -zxvf helm-v3.2.4-linux-amd64.tar.gz 将文件移动到PATH目录中（以linux-amd64为例） sudo mv linux-amd64/helm /usr/bin/helm chmod a+x /usr/bin/helm #验证部署 执行命令，出现以下信息即部署成功。 helm version #配置仓库 helm repo add aliyun https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts 
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="https://hlcooll.github.io/public/kubernetes/helm/nfs-sc/">Nfs Sc</a>
+  </h1>
+  <time datetime="2020-10-15T18:02:24&#43;0800" class="post-date">Thu, Oct 15, 2020</time>
+  https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client
+#创建nfs-sc helm install stable/nfs-client-provisioner &ndash;set nfs.server=172.17.16.14 &ndash;set nfs.path=/data/u01/prod
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="https://hlcooll.github.io/public/kubernetes/ingress-tls/">Ingress Tls</a>
+  </h1>
+  <time datetime="2020-10-15T17:31:29&#43;0800" class="post-date">Thu, Oct 15, 2020</time>
+  kubectl -n kubernetes-dashboard create secret tls hl-https --cert=hlcooll.crt --key=hlcooll.key apiVersion: extensions/v1beta1 kind: Ingress metadata: name: kubernetes-dashboard spec: tls: - hosts: - dashboard.hlcool.top secretName: https rules: - host: sslexample.foo.com http: paths: - path: / backend: serviceName: kubernetes-dashboard servicePort: 80 
+  
+</article><article class="post">
+  <h1 class="post-title">
     <a href="https://hlcooll.github.io/public/kubernetes/k8s-affinity/">K8s Affinity</a>
   </h1>
   <time datetime="2020-10-12T11:15:57&#43;0800" class="post-date">Mon, Oct 12, 2020</time>

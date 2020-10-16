@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Kubernetes &middot; hlcooll</title>
+  <title>Helm &middot; hlcooll</title>
   <meta name="description" content="" />
 
   
@@ -24,7 +24,6 @@
   <link rel="shortcut icon" href="/favicon.png">
 
   
-  <link href="https://hlcooll.github.io/public/kubernetes/index.xml" rel="alternate" type="application/rss+xml" title="hlcooll" />
   
 </head>
 
@@ -50,21 +49,37 @@
 </aside>
 
     <main class="content container">
-    <ul class="posts">
-<li>
-    <span><a href="https://hlcooll.github.io/public/kubernetes/helm/graylogs/">Graylogs</a> <time class="pull-right post-list" datetime="2020-10-16T10:12:53&#43;0800">Fri, Oct 16, 2020</time></span>
-  </li><li>
-    <span><a href="https://hlcooll.github.io/public/kubernetes/helm/helm/">Helm</a> <time class="pull-right post-list" datetime="2020-10-15T18:03:52&#43;0800">Thu, Oct 15, 2020</time></span>
-  </li><li>
-    <span><a href="https://hlcooll.github.io/public/kubernetes/helm/nfs-sc/">Nfs Sc</a> <time class="pull-right post-list" datetime="2020-10-15T18:02:24&#43;0800">Thu, Oct 15, 2020</time></span>
-  </li><li>
-    <span><a href="https://hlcooll.github.io/public/kubernetes/ingress-tls/">Ingress Tls</a> <time class="pull-right post-list" datetime="2020-10-15T17:31:29&#43;0800">Thu, Oct 15, 2020</time></span>
-  </li><li>
-    <span><a href="https://hlcooll.github.io/public/kubernetes/k8s-affinity/">K8s Affinity</a> <time class="pull-right post-list" datetime="2020-10-12T11:15:57&#43;0800">Mon, Oct 12, 2020</time></span>
-  </li><li>
-    <span><a href="https://hlcooll.github.io/public/kubernetes/kubernetes/">Kubernetes</a> <time class="pull-right post-list" datetime="2020-09-14T17:43:50&#43;0800">Mon, Sep 14, 2020</time></span>
-  </li>
-</ul>
+    <div class="post">
+  <h1>Helm</h1>
+  <time datetime=2020-10-15T18:03:52&#43;0800 class="post-date">Thu, Oct 15, 2020</time>
+  <p>#安装Helm3</p>
+<pre><code>#下载：
+wget https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz
+
+curl -L -o helm-v3.2.4-linux-amd64.tar.gz https://file.choerodon.com.cn/kubernetes-helm/v3.2.4/helm-v3.2.4-linux-amd64.tar.gz
+
+#官方安装文档
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get &gt; get_helm.sh
+
+解压压缩包（以linux-amd64为例）
+tar -zxvf helm-v3.2.4-linux-amd64.tar.gz
+
+将文件移动到PATH目录中（以linux-amd64为例）
+
+sudo mv linux-amd64/helm /usr/bin/helm
+
+chmod a+x /usr/bin/helm
+#验证部署
+执行命令，出现以下信息即部署成功。
+helm version
+
+#配置仓库
+helm repo add aliyun https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+
+</code></pre>
+</div>
+
+
     </main>
 
     

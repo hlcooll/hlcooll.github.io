@@ -3,17 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://hlcooll.github.io/public/</loc>
-    <lastmod>2020-10-12T11:15:57+08:00</lastmod>
+    <loc>https://hlcooll.github.io/public/kubernetes/helm/graylogs/</loc>
+    <lastmod>2020-10-16T10:12:53+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hlcooll.github.io/public/kubernetes/k8s-affinity/</loc>
-    <lastmod>2020-10-12T11:15:57+08:00</lastmod>
+    <loc>https://hlcooll.github.io/public/</loc>
+    <lastmod>2020-10-16T10:12:53+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hlcooll.github.io/public/kubernetes/</loc>
+    <lastmod>2020-10-16T10:12:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/kubernetes/helm/helm/</loc>
+    <lastmod>2020-10-15T18:03:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/kubernetes/helm/nfs-sc/</loc>
+    <lastmod>2020-10-15T18:02:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/kubernetes/ingress-tls/</loc>
+    <lastmod>2020-10-15T17:31:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/kubernetes/k8s-affinity/</loc>
     <lastmod>2020-10-12T11:15:57+08:00</lastmod>
   </url>
   

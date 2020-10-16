@@ -6,10 +6,49 @@
     <description>Recent content in Kubernetes on hlcooll</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Oct 2020 11:15:57 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2020 10:12:53 +0800</lastBuildDate>
     
 	<atom:link href="https://hlcooll.github.io/public/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Graylogs</title>
+      <link>https://hlcooll.github.io/public/kubernetes/helm/graylogs/</link>
+      <pubDate>Fri, 16 Oct 2020 10:12:53 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/kubernetes/helm/graylogs/</guid>
+      <description>#mongodb
+# Warning FailedCreate 30s (x14 over 71s) statefulset-controller create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod &amp;quot;mongodb-replicaset-1602575807-0&amp;quot; is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1 helm fetch stable/mongodb-replicaset kubectl create namespace mongodb helm install mongodb-replicaset --namespace &amp;quot;graylog&amp;quot; -n &amp;quot;mongodb&amp;quot; stable/mongodb-replicaset --set persistentVolume.storageClass=&amp;quot;nfs-client&amp;quot; --set startupProbe.successThreshold=&amp;quot;1&amp;quot; WARNING: This chart is deprecated NAME: mongodb-replicaset LAST DEPLOYED: Fri Oct 16 10:17:48 2020 NAMESPACE: mongodb STATUS: deployed REVISION: 1 NOTES: ******************* ****DEPRECATED***** ******************* * * This chart is deprecated and no longer maintained.</description>
+    </item>
+    
+    <item>
+      <title>Helm</title>
+      <link>https://hlcooll.github.io/public/kubernetes/helm/helm/</link>
+      <pubDate>Thu, 15 Oct 2020 18:03:52 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/kubernetes/helm/helm/</guid>
+      <description>#安装Helm3
+#下载： wget https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz curl -L -o helm-v3.2.4-linux-amd64.tar.gz https://file.choerodon.com.cn/kubernetes-helm/v3.2.4/helm-v3.2.4-linux-amd64.tar.gz #官方安装文档 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get &amp;gt; get_helm.sh 解压压缩包（以linux-amd64为例） tar -zxvf helm-v3.2.4-linux-amd64.tar.gz 将文件移动到PATH目录中（以linux-amd64为例） sudo mv linux-amd64/helm /usr/bin/helm chmod a+x /usr/bin/helm #验证部署 执行命令，出现以下信息即部署成功。 helm version #配置仓库 helm repo add aliyun https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts </description>
+    </item>
+    
+    <item>
+      <title>Nfs Sc</title>
+      <link>https://hlcooll.github.io/public/kubernetes/helm/nfs-sc/</link>
+      <pubDate>Thu, 15 Oct 2020 18:02:24 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/kubernetes/helm/nfs-sc/</guid>
+      <description>https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client
+#创建nfs-sc helm install stable/nfs-client-provisioner &amp;ndash;set nfs.server=172.17.16.14 &amp;ndash;set nfs.path=/data/u01/prod</description>
+    </item>
+    
+    <item>
+      <title>Ingress Tls</title>
+      <link>https://hlcooll.github.io/public/kubernetes/ingress-tls/</link>
+      <pubDate>Thu, 15 Oct 2020 17:31:29 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/kubernetes/ingress-tls/</guid>
+      <description>kubectl -n kubernetes-dashboard create secret tls hl-https --cert=hlcooll.crt --key=hlcooll.key apiVersion: extensions/v1beta1 kind: Ingress metadata: name: kubernetes-dashboard spec: tls: - hosts: - dashboard.hlcool.top secretName: https rules: - host: sslexample.foo.com http: paths: - path: / backend: serviceName: kubernetes-dashboard servicePort: 80 </description>
+    </item>
     
     <item>
       <title>K8s Affinity</title>
