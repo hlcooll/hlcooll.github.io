@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linuxes on hlcooll</title>
+    <link>https://hlcooll.github.io/public/linux/</link>
+    <description>Recent content in Linuxes on hlcooll</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Oct 2020 16:52:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://hlcooll.github.io/public/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Snap安装</title>
+      <link>https://hlcooll.github.io/public/linux/snap%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Mon, 19 Oct 2020 16:52:16 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/linux/snap%E5%AE%89%E8%A3%85/</guid>
+      <description>centos7安装snap #添加epel存储库并安装copr yum插件开始安装 sudo yum install epel-release sudo yum install yum-plugin-copr #添加仓库 sudo yum copr enable ngompa/snapcore-el7 #安装 sudo yum -y install snapd sudo systemctl enable --now snapd.socket sudo ln -s /var/lib/snapd/snap /snap snap --help centos8安装snap #添加EPEL存储库 sudo dnf -y install https://dl.Fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm # sudo dnf -y upgrade sudo dnf -y install snapd sudo systemctl enable --now snapd.socket sudo ln -s /var/lib/snapd/snap /snap snap --help </description>
+    </item>
+    
+  </channel>
+</rss>

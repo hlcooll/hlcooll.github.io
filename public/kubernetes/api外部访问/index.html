@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Api外部访问 &middot; hlcooll</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://hlcooll.github.io/public/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://hlcooll.github.io/public/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://hlcooll.github.io/public/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://hlcooll.github.io/public/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-0d layout-reverse">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://hlcooll.github.io/public/"><h1>hlcooll</h1></a>
+      <p class="lead">
+       blog 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://hlcooll.github.io/public/">Home</a> </li>
+        <li><a href="https://github.com/hlcooll"> Github </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2020. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Api外部访问</h1>
+  <time datetime=2020-10-21T15:37:34&#43;0800 class="post-date">Wed, Oct 21, 2020</time>
+  <h5 id="网络监听">网络监听</h5>
+<pre><code>kubectl proxy --address='81.68.84.91'  --accept-hosts='^*$' --port=8001 
+启动kubectl proxy，使用网卡IP，从其他机器访问， --accept-hosts='^*$' 表示接受所有源IP,否则会显示不被授权
+curl  https://81.68.84.91:8001/api
+
+</code></pre><h2 id="2直接访问api">2.直接访问api</h2>
+<h5 id="21获取集群名称和api地址">2.1获取集群名称和api地址</h5>
+<pre><code>kubectl config view -o jsonpath='{&quot;Cluster name\tServer\n&quot;}{range .clusters[*]}{.name}{&quot;\t&quot;}{.cluster.server}{&quot;\n&quot;}{end}'
+export CLUSTER_NAME=&quot;kubernetes&quot;
+APISERVER=$(kubectl config view -o jsonpath=&quot;{.clusters[?(@.name==\&quot;$CLUSTER_NAME\&quot;)].cluster.server}&quot;)
+</code></pre><h4 id="22serviceaccount创建访问ssl权限secret-token">2.2serviceaccount创建访问ssl权限secret token</h4>
+<pre><code>kubectl create sa test
+
+kubectl create clusterrolebinding sa-test-cluster-admin --clusterrole='cluster-admin' --serviceaccount=default:test
+
+TOKEN=$(kubectl get secrets -o jsonpath=&quot;{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='test')].data.token}&quot;|base64 -d)
+</code></pre><pre><code class="language-使用token访问api" data-lang="使用token访问api">curl --header &quot;Authorization: Bearer $TOKEN&quot; --insecure  -X GET $APISERVER/api/v1/namespaces/test/pods?limit=1
+curl --header &quot;Authorization: Bearer $TOKEN&quot; --insecure  -X GET $APISERVER/api/v1/namespaces/default/pods?limit=1
+curl --header &quot;Authorization: Bearer $TOKEN&quot; --insecure  -X GET $APISERVER/api/v1/namespaces/kube-system/pods?limit=1
+https://81.68.84.91:6443/apis/apps/v1/
+</code></pre><h4 id="23使用useraccount来访问">2.3.使用useraccount来访问</h4>
+<p>创建user panmeng的证书</p>
+<pre><code>openssl genrsa -out panmeng.key 2048
+openssl req -new -key panmeng.key -out panmeng.csr -subj &quot;/CN=panmeng&quot;
+openssl x509 -req -in panmeng.csr -out panmeng.crt -sha1 -CA ca.crt -CAkey ca.key  -CAcreateserial -days 3650
+</code></pre><p>创建角色getpods，创建角色绑定user panmeng和role getpods</p>
+<pre><code>kubectl create role getpods --verb=get --verb=list --resource=pods
+kubectl create rolebinding panmeng-getpods --role=getpods --user=panmeng --namespace=default
+</code></pre><p>验证访问是否正常</p>
+<pre><code>curl --cert /etc/kubernetes/pki/panmeng.crt   -X GET $APISERVER/api/v1/namespaces/default/pods?limit=1 --key /etc/kubernetes/pki/panmeng.key  --insecure
+</code></pre><p>验证用户panmeng不具备访问namespace kube-system的权限</p>
+<pre><code>curl --cert /etc/kubernetes/pki/panmeng.crt   -X GET $APISERVER/api/v1/namespaces/kube-system/pods?limit=1 --key /etc/kubernetes/pki/panmeng.key  --insecure
+{
+  &quot;kind&quot;: &quot;Status&quot;,
+  &quot;apiVersion&quot;: &quot;v1&quot;,
+  &quot;metadata&quot;: {
+    
+  },
+  &quot;status&quot;: &quot;Failure&quot;,
+  &quot;message&quot;: &quot;pods is forbidden: User \&quot;panmeng\&quot; cannot list resource \&quot;pods\&quot; in API group \&quot;\&quot; in the namespace \&quot;kube-system\&quot;&quot;,
+  &quot;reason&quot;: &quot;Forbidden&quot;,
+  &quot;details&quot;: {
+    &quot;kind&quot;: &quot;pods&quot;
+  },
+  &quot;code&quot;: 403
+}
+</code></pre><h2 id="3常用api资源">3.常用api资源</h2>
+<p>以下为常用资源的URL路径，将/apis/GROUP/VERSION/替换为/api/v1/,则表示基础API组</p>
+<pre><code>/apis/GROUP/VERSION/RESOURCETYPE
+/apis/GROUP/VERSION/RESOURCETYPE/NAME
+/apis/GROUP/VERSION/namespaces/NAMESPACE/RESOURCETYPE
+/apis/GROUP/VERSION/namespaces/NAMESPACE/RESOURCETYPE/NAME
+/apis/GROUP/VERSION/RESOURCETYPE/NAME/SUBRESOURCE
+/apis/GROUP/VERSION/namespaces/NAMESPACE/RESOURCETYPE/NAME/SUBRESOURCE
+</code></pre><p>查看扩展api里的资源deployments</p>
+<pre><code>curl  http://127.0.0.1:8001/apis/extensions/v1beta1/namespaces/kube-system/deployments
+</code></pre><p>查看基础api里的资源pods</p>
+<pre><code>curl  http://127.0.0.1:8001/api/v1/namespaces/kube-system/pods/
+</code></pre><h4 id="31使用watch持续监控资源的变化">3.1.使用watch持续监控资源的变化</h4>
+<pre><code>curl  http://127.0.0.1:8001/api/v1/namespaces/test/pods
+&quot;resourceVersion&quot;: &quot;2563046&quot;
+curl  http://127.0.0.1:8001/api/v1/namespaces/test/pods?watch=1&amp;resourceVersion=2563046
+</code></pre><h4 id="32查看前n个资源">3.2.查看前n个资源</h4>
+<pre><code>curl  http://127.0.0.1:8001/api/v1/namespaces/kube-system/pods?limit=1
+&quot;continue&quot;: &quot;eyJ2IjoibWV0YS5rOHMuaW8vdjEiLCJydiI6MjU2NDk2Mywic3RhcnQiOiJjYWxpY28tbm9kZS1jejZrOVx1MDAwMCJ9&quot;
+</code></pre><p>使用continue token查看下n个资源</p>
+<pre><code>curl  'http://127.0.0.1:8001/api/v1/namespaces/kube-system/pods?limit=1&amp;continue=eyJ2IjoibWV0YS5rOHMuaW8vdjEiLCJydiI6MjU3MTYxMSwic3RhcnQiOiJjYWxpY28ta3ViZS1jb250cm9sbGVycy01Y2JjY2NjODg1LWt2bGRyXHUwMDAwIn0'
+</code></pre><h2 id="4资源的类型">4.资源的类型</h2>
+<pre><code>资源分类：Workloads，Discovery &amp; LB ，Config &amp; Storage，Cluster，Metadata
+资源对象：Resource ObjectMeta，ResourceSpec，ResourceStatus
+资源操作：create，update（replace&amp;patch），read（get&amp;list&amp;watch），delete,rollback,read/write scale,read/write status
+
+</code></pre><h2 id="5workloads的操作">5.Workloads的操作</h2>
+<p>以pod为例，介绍workloads apis，以下为pod的yaml文件</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-example
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu:trusty
+    command: [&quot;echo&quot;]
+    args: [&quot;Hello World&quot;]
+</code></pre><h4 id="51-创建pod">5.1. 创建pod</h4>
+<pre><code>POST /api/v1/namespaces/{namespace}/pods
+</code></pre><p>查看当前pods</p>
+<pre><code>kubectl -n kube-system get pods
+</code></pre><p>使用api创建pod</p>
+<pre><code>curl --request POST http://127.0.0.1:8001/api/v1/namespaces/test/pods -s -w &quot;状态码是:%{http_code}\n&quot; -o /dev/null -H 'Content-Type: application/yaml' --data 
+'apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-example
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu:trusty
+    command: [&quot;echo&quot;]
+    args: [&quot;Hello World&quot;]'
+
+状态码是:201
+</code></pre><p>查看当前pods</p>
+<pre><code>kubectl -n test get pods
+</code></pre><h4 id="52删除pod">5.2.删除pod</h4>
+<pre><code>DELETE /api/v1/namespaces/{namespace}/pods/{name}
+</code></pre><p>查看当前pods</p>
+<pre><code>kubectl get pods -n test --show-labels
+</code></pre><p>删除pod pod-example</p>
+<pre><code>curl --request DELETE http://127.0.0.1:8001/api/v1/namespaces/test/pods/pod-example -o /dev/null  -s -w &quot;状态码是:%{http_code}\n&quot; 
+
+状态码是:200
+</code></pre><p>查看当前pods</p>
+<pre><code>kubectl get pods -n test --show-labels
+</code></pre><pre><code class="language-参考资料" data-lang="参考资料">https://www.jianshu.com/p/0a5976ce1ce4
+</code></pre>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

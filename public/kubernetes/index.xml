@@ -6,10 +6,19 @@
     <description>Recent content in Kubernetes on hlcooll</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Oct 2020 10:12:53 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 15:37:34 +0800</lastBuildDate>
     
 	<atom:link href="https://hlcooll.github.io/public/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Api外部访问</title>
+      <link>https://hlcooll.github.io/public/kubernetes/api%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AE/</link>
+      <pubDate>Wed, 21 Oct 2020 15:37:34 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/kubernetes/api%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AE/</guid>
+      <description>网络监听 kubectl proxy --address=&#39;81.68.84.91&#39; --accept-hosts=&#39;^*$&#39; --port=8001 启动kubectl proxy，使用网卡IP，从其他机器访问， --accept-hosts=&#39;^*$&#39; 表示接受所有源IP,否则会显示不被授权 curl https://81.68.84.91:8001/api 2.直接访问api 2.1获取集群名称和api地址 kubectl config view -o jsonpath=&#39;{&amp;quot;Cluster name\tServer\n&amp;quot;}{range .clusters[*]}{.name}{&amp;quot;\t&amp;quot;}{.cluster.server}{&amp;quot;\n&amp;quot;}{end}&#39; export CLUSTER_NAME=&amp;quot;kubernetes&amp;quot; APISERVER=$(kubectl config view -o jsonpath=&amp;quot;{.clusters[?(@.name==\&amp;quot;$CLUSTER_NAME\&amp;quot;)].cluster.server}&amp;quot;) 2.2serviceaccount创建访问ssl权限secret token kubectl create sa test kubectl create clusterrolebinding sa-test-cluster-admin --clusterrole=&#39;cluster-admin&#39; --serviceaccount=default:test TOKEN=$(kubectl get secrets -o jsonpath=&amp;quot;{.items[?(@.metadata.annotations[&#39;kubernetes\.io/service-account\.name&#39;]==&#39;test&#39;)].data.token}&amp;quot;|base64 -d) curl --header &amp;quot;Authorization: Bearer $TOKEN&amp;quot; --insecure -X GET $APISERVER/api/v1/namespaces/test/pods?limit=1 curl --header &amp;quot;Authorization: Bearer $TOKEN&amp;quot; --insecure -X GET $APISERVER/api/v1/namespaces/default/pods?limit=1 curl --header &amp;quot;Authorization: Bearer $TOKEN&amp;quot; --insecure -X GET $APISERVER/api/v1/namespaces/kube-system/pods?</description>
+    </item>
     
     <item>
       <title>Graylogs</title>
@@ -17,8 +26,7 @@
       <pubDate>Fri, 16 Oct 2020 10:12:53 +0800</pubDate>
       
       <guid>https://hlcooll.github.io/public/kubernetes/helm/graylogs/</guid>
-      <description>#mongodb
-# Warning FailedCreate 30s (x14 over 71s) statefulset-controller create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod &amp;quot;mongodb-replicaset-1602575807-0&amp;quot; is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1 helm fetch stable/mongodb-replicaset kubectl create namespace mongodb helm install mongodb-replicaset --namespace &amp;quot;graylog&amp;quot; -n &amp;quot;mongodb&amp;quot; stable/mongodb-replicaset --set persistentVolume.storageClass=&amp;quot;nfs-client&amp;quot; --set startupProbe.successThreshold=&amp;quot;1&amp;quot; WARNING: This chart is deprecated NAME: mongodb-replicaset LAST DEPLOYED: Fri Oct 16 10:17:48 2020 NAMESPACE: mongodb STATUS: deployed REVISION: 1 NOTES: ******************* ****DEPRECATED***** ******************* * * This chart is deprecated and no longer maintained.</description>
+      <description>mongodb # Warning FailedCreate 30s (x14 over 71s) statefulset-controller create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod &amp;quot;mongodb-replicaset-1602575807-0&amp;quot; is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1 helm fetch stable/mongodb-replicaset kubectl create namespace mongodb helm install mongodb-replicaset --namespace &amp;quot;graylog&amp;quot; -n &amp;quot;mongodb&amp;quot; stable/mongodb-replicaset --set persistentVolume.storageClass=&amp;quot;nfs-client&amp;quot; --set startupProbe.successThreshold=&amp;quot;1&amp;quot; WARNING: This chart is deprecated NAME: mongodb-replicaset LAST DEPLOYED: Fri Oct 16 10:17:48 2020 NAMESPACE: mongodb STATUS: deployed REVISION: 1 NOTES: ******************* ****DEPRECATED***** ******************* * * This chart is deprecated and no longer maintained.</description>
     </item>
     
     <item>
@@ -65,7 +73,11 @@
       <pubDate>Mon, 14 Sep 2020 17:43:50 +0800</pubDate>
       
       <guid>https://hlcooll.github.io/public/kubernetes/kubernetes/</guid>
-      <description></description>
+      <description>使用 Ctrl+Alt+Del重启电脑
+$$ \mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix} \mathbf{i} &amp;amp; \mathbf{j} &amp;amp; \mathbf{k} \
+\frac{\partial X}{\partial u} &amp;amp; \frac{\partial Y}{\partial u} &amp;amp; 0 \
+\frac{\partial X}{\partial v} &amp;amp; \frac{\partial Y}{\partial v} &amp;amp; 0 \
+\end{vmatrix} ${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}} $$</description>
     </item>
     
   </channel>

@@ -3,17 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://hlcooll.github.io/public/kubernetes/helm/graylogs/</loc>
-    <lastmod>2020-10-16T10:12:53+08:00</lastmod>
+    <loc>https://hlcooll.github.io/public/kubernetes/api%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AE/</loc>
+    <lastmod>2020-10-21T15:37:34+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hlcooll.github.io/public/</loc>
-    <lastmod>2020-10-16T10:12:53+08:00</lastmod>
+    <lastmod>2020-10-21T15:37:34+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hlcooll.github.io/public/kubernetes/</loc>
+    <lastmod>2020-10-21T15:37:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/linux/</loc>
+    <lastmod>2020-10-19T16:52:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/linux/snap%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2020-10-19T16:52:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/hugo/</loc>
+    <lastmod>2020-10-19T15:45:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/hugo/markdown/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</loc>
+    <lastmod>2020-10-19T15:45:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/mysql/error/error-server_has_gone_away/</loc>
+    <lastmod>2020-10-16T16:52:40+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/mysql/</loc>
+    <lastmod>2020-10-16T16:52:40+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hlcooll.github.io/public/kubernetes/helm/graylogs/</loc>
     <lastmod>2020-10-16T10:12:53+08:00</lastmod>
   </url>
   
@@ -39,11 +74,6 @@
   
   <url>
     <loc>https://hlcooll.github.io/public/hugo/archetypes-new/</loc>
-    <lastmod>2020-10-10T13:54:11+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://hlcooll.github.io/public/hugo/</loc>
     <lastmod>2020-10-10T13:54:11+08:00</lastmod>
   </url>
   

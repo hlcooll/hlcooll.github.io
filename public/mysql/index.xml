@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mysqls on hlcooll</title>
+    <link>https://hlcooll.github.io/public/mysql/</link>
+    <description>Recent content in Mysqls on hlcooll</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Oct 2020 16:52:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://hlcooll.github.io/public/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ERROR Server_has_gone_away</title>
+      <link>https://hlcooll.github.io/public/mysql/error/error-server_has_gone_away/</link>
+      <pubDate>Fri, 16 Oct 2020 16:52:40 +0800</pubDate>
+      
+      <guid>https://hlcooll.github.io/public/mysql/error/error-server_has_gone_away/</guid>
+      <description>MySQL server has gone away 问题的解决方法 mysql出现ERROR : (2006, &amp;lsquo;MySQL server has gone away&amp;rsquo;) 的问题意思就是指client和MySQL server之间的链接断开了。 造成这样的原因一般是sql操作的时间过长，或者是传送的数据太大(例如使用insert &amp;hellip; values的语句过长， 这种情况可以通过修改max_allowed_packed的配置参数来避免，也可以在程序中将数据分批插入)。 产生这个问题的原因有很多，总结下网上的分析：
+原因一. MySQL 服务宕了 判断是否属于这个原因的方法很简单，进入mysql控制台，查看mysql的运行时长
+mysql&amp;gt; show global status like &#39;uptime&#39;; +---------------+---------+ | Variable_name | Value | +---------------+---------+ | Uptime | 3414707 | +---------------+---------+ 1 row in set或者查看MySQL的报错日志，看看有没有重启的信息 如果uptime数值很大，表明mysql服务运行了很久了。说明最近服务没有重启过。 如果日志没有相关信息，也表名mysql服务最近没有重启过，可以继续检查下面几项内容。
+原因二. mysql连接超时 即某个mysql长连接很久没有新的请求发起，达到了server端的timeout，被server强行关闭。 此后再通过这个connection发起查询的时候，就会报错server has gone away （大部分PHP脚本就是属于此类）
+mysql&amp;gt; show global variables like &#39;%timeout&#39;; +----------------------------+----------+ | Variable_name | Value | +----------------------------+----------+ | connect_timeout | 10 | | delayed_insert_timeout | 300 | | innodb_lock_wait_timeout | 50 | | innodb_rollback_on_timeout | OFF | | interactive_timeout | 28800 | | lock_wait_timeout | 31536000 | | net_read_timeout | 30 | | net_write_timeout | 60 | | slave_net_timeout | 3600 | | wait_timeout | 28800 | +----------------------------+----------+ 10 rows in set wait_timeout 是28800秒，即mysql链接在无操作28800秒后被自动关闭</description>
+    </item>
+    
+  </channel>
+</rss>
