@@ -53,11 +53,54 @@
     <div class="posts">
 <article class="post">
   <h1 class="post-title">
+    <a href="https://hlcooll.github.io/public/kubernetes/api%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AE/">Api外部访问</a>
+  </h1>
+  <time datetime="2020-10-21T15:37:34&#43;0800" class="post-date">Wed, Oct 21, 2020</time>
+  网络监听 kubectl proxy --address='81.68.84.91' --accept-hosts='^*$' --port=8001 启动kubectl proxy，使用网卡IP，从其他机器访问， --accept-hosts='^*$' 表示接受所有源IP,否则会显示不被授权 curl https://81.68.84.91:8001/api 2.直接访问api 2.1获取集群名称和api地址 kubectl config view -o jsonpath='{&quot;Cluster name\tServer\n&quot;}{range .clusters[*]}{.name}{&quot;\t&quot;}{.cluster.server}{&quot;\n&quot;}{end}' export CLUSTER_NAME=&quot;kubernetes&quot; APISERVER=$(kubectl config view -o jsonpath=&quot;{.clusters[?(@.name==\&quot;$CLUSTER_NAME\&quot;)].cluster.server}&quot;) 2.2serviceaccount创建访问ssl权限secret token kubectl create sa test kubectl create clusterrolebinding sa-test-cluster-admin --clusterrole='cluster-admin' --serviceaccount=default:test TOKEN=$(kubectl get secrets -o jsonpath=&quot;{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='test')].data.token}&quot;|base64 -d) curl --header &quot;Authorization: Bearer $TOKEN&quot; --insecure -X GET $APISERVER/api/v1/namespaces/test/pods?limit=1 curl --header &quot;Authorization: Bearer $TOKEN&quot; --insecure -X GET $APISERVER/api/v1/namespaces/default/pods?limit=1 curl --header &quot;Authorization: Bearer $TOKEN&quot; --insecure -X GET $APISERVER/api/v1/namespaces/kube-system/pods?
+  
+  <div class="read-more-link">
+    <a href="/public/kubernetes/api%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AE/">Read More…</a>
+  </div>
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="https://hlcooll.github.io/public/linux/snap%E5%AE%89%E8%A3%85/">Snap安装</a>
+  </h1>
+  <time datetime="2020-10-19T16:52:16&#43;0800" class="post-date">Mon, Oct 19, 2020</time>
+  centos7安装snap #添加epel存储库并安装copr yum插件开始安装 sudo yum install epel-release sudo yum install yum-plugin-copr #添加仓库 sudo yum copr enable ngompa/snapcore-el7 #安装 sudo yum -y install snapd sudo systemctl enable --now snapd.socket sudo ln -s /var/lib/snapd/snap /snap snap --help centos8安装snap #添加EPEL存储库 sudo dnf -y install https://dl.Fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm # sudo dnf -y upgrade sudo dnf -y install snapd sudo systemctl enable --now snapd.socket sudo ln -s /var/lib/snapd/snap /snap snap --help 
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="https://hlcooll.github.io/public/hugo/markdown/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">Markdown数学公式</a>
+  </h1>
+  <time datetime="2020-10-19T15:45:44&#43;0800" class="post-date">Mon, Oct 19, 2020</time>
+  行内与独行 行内公式：将公式插入到本行内，符号：$公式内容$，如：$xyz$ 独行公式：将公式插入到新的一行内，并且居中，符号：$$公式内容$$，如：$$xyz$$ 上标、下标与组合 上标符号，符号：^，如：$x^4$ 下标符号，符号：_，如：$x_1$ 组合符号，符号：{}，如：${16}_{8}O{2+}_{2}$ 汉字、字体与格式 汉字形式，符号：\mbox{}，如：$V_{\mbox{初始}}$ 字体控制，符号：\displaystyle，如：$\displaystyle \frac{x+y}{y+z}$ 下划线符号，符号：\underline，如：$\underline{x+y}$ 标签，符号\tag{数字}，如：$\tag{11}$ 上大括号，符号：\overbrace{算式}，如：$\overbrace{a+b+c+d}^{2.0}$ 下大括号，符号：\underbrace{算式}，如：$a+\underbrace{b+c}_{1.0}+d$ 上位符号，符号：\stacrel{上位符号}{基位符号}，如：$\vec{x}\stackrel{\mathrm{def}}{=}{x_1,\dots,x_n}$ 占位符 两个quad空格，符号：\qquad，如：$x \qquad y$ quad空格，符号：\quad，如：$x \quad y$ 大空格，符号\，如：$x \ y$ 中空格，符号\:，如：$x : y$ 小空格，符号\,，如：$x , y$ 没有空格，符号``，如：$xy$ 紧贴，符号\!，如：$x ! y$ 定界符与组合 括号，符号：（）\big(\big) \Big(\Big) \bigg(\bigg) \Bigg(\Bigg)，如：$（）\big(\big) \Big(\Big) \bigg(\bigg) \Bigg(\Bigg)$ 中括号，符号：[]，如：$[x+y]$ 大括号，符号：\{ \}，如：${x+y}$ 自适应括号，符号：\left \right，如：$\left(x\right)$，$\left(x{yz}\right)$ 组合公式，符号：{上位公式 \choose 下位公式}，如：${n+1 \choose k}={n \choose k}+{n \choose k-1}$ 组合公式，符号：{上位公式 \atop 下位公式}，如：$\sum_{k_0,k_1,\ldots&gt;0 \atop k_0+k_1+\cdots=n}A_{k_0}A_{k_1}\cdots$ 四则运算 加法运算，符号：+，如：$x+y=z$ 减法运算，符号：-，如：$x-y=z$ 加减运算，符号：\pm，如：$x \pm y=z$ 减甲运算，符号：\mp，如：$x \mp y=z$ 乘法运算，符号：\times，如：$x \times y=z$ 点乘运算，符号：\cdot，如：$x \cdot y=z$ 星乘运算，符号：\ast，如：$x \ast y=z$ 除法运算，符号：\div，如：$x \div y=z$ 斜法运算，符号：/，如：$x/y=z$ 分式表示，符号：\frac{分子}{分母}，如：$\frac{x+y}{y+z}$ 分式表示，符号：{分子} \voer {分母}，如：${x+y} \over {y+z}$ 绝对值表示，符号：||，如：$|x+y|$ 高级运算 平均数运算，符号：\overline{算式}，如：$\overline{xyz}$ 开二次方运算，符号：\sqrt，如：$\sqrt x$ 开方运算，符号：\sqrt[开方数]{被开方数}，如：$\sqrt[3]{x+y}$ 对数运算，符号：\log，如：$\log(x)$ 极限运算，符号：\lim，如：$\lim^{x \to \infty}_{y \to 0}{\frac{x}{y}}$ 极限运算，符号：\displaystyle \lim，如：$\displaystyle \lim^{x \to \infty}_{y \to 0}{\frac{x}{y}}$ 求和运算，符号：\sum，如：$\sum^{x \to \infty}_{y \to 0}{\frac{x}{y}}$ 求和运算，符号：\displaystyle \sum，如：$\displaystyle \sum^{x \to \infty}_{y \to 0}{\frac{x}{y}}$ 积分运算，符号：\int，如：$\int^{\infty}_{0}{xdx}$ 积分运算，符号：\displaystyle \int，如：$\displaystyle \int^{\infty}_{0}{xdx}$ 微分运算，符号：\partial，如：$\frac{\partial x}{\partial y}$ 矩阵表示，符号：\begin{matrix} \end{matrix}，如：$\left[ \begin{matrix} 1 &amp;2 &amp;\cdots &amp;4\5 &amp;6 &amp;\cdots &amp;8\\vdots &amp;\vdots &amp;\ddots &amp;\vdots\13 &amp;14 &amp;\cdots &amp;16\end{matrix} \right]$ 逻辑运算 等于运算，符号：=，如：$x+y=z$ 大于运算，符号：&gt;，如：$x+y&gt;z$ 小于运算，符号：&lt;，如：$x+y&lt;z$ 大于等于运算，符号：\geq，如：$x+y \geq z$ 小于等于运算，符号：\leq，如：$x+y \leq z$ 不等于运算，符号：\neq，如：$x+y \neq z$ 不大于等于运算，符号：\ngeq，如：$x+y \ngeq z$ 不大于等于运算，符号：\not\geq，如：$x+y \not\geq z$ 不小于等于运算，符号：\nleq，如：$x+y \nleq z$ 不小于等于运算，符号：\not\leq，如：$x+y \not\leq z$ 约等于运算，符号：\approx，如：$x+y \approx z$ 恒定等于运算，符号：\equiv，如：$x+y \equiv z$ 集合运算 属于运算，符号：\in，如：$x \in y$ 不属于运算，符号：\notin，如：$x \notin y$ 不属于运算，符号：\not\in，如：$x \not\in y$ 子集运算，符号：\subset，如：$x \subset y$ 子集运算，符号：\supset，如：$x \supset y$ 真子集运算，符号：\subseteq，如：$x \subseteq y$ 非真子集运算，符号：\subsetneq，如：$x \subsetneq y$ 真子集运算，符号：\supseteq，如：$x \supseteq y$ 非真子集运算，符号：\supsetneq，如：$x \supsetneq y$ 非子集运算，符号：\not\subset，如：$x \not\subset y$ 非子集运算，符号：\not\supset，如：$x \not\supset y$ 并集运算，符号：\cup，如：$x \cup y$ 交集运算，符号：\cap，如：$x \cap y$ 差集运算，符号：\setminus，如：$x \setminus y$ 同或运算，符号：\bigodot，如：$x \bigodot y$ 同与运算，符号：\bigotimes，如：$x \bigotimes y$ 实数集合，符号：\mathbb{R}，如：\mathbb{R} 自然数集合，符号：\mathbb{Z}，如：\mathbb{Z} 空集，符号：\emptyset，如：$\emptyset$ 数学符号 无穷，符号：\infty，如：$\infty$ 虚数，符号：\imath，如：$\imath$ 虚数，符号：\jmath，如：$\jmath$ 数学符号，符号\hat{a}，如：$\hat{a}$ 数学符号，符号\check{a}，如：$\check{a}$ 数学符号，符号\breve{a}，如：$\breve{a}$ 数学符号，符号\tilde{a}，如：$\tilde{a}$ 数学符号，符号\bar{a}，如：$\bar{a}$ 矢量符号，符号\vec{a}，如：$\vec{a}$ 数学符号，符号\acute{a}，如：$\acute{a}$ 数学符号，符号\grave{a}，如：$\grave{a}$ 数学符号，符号\mathring{a}，如：$\mathring{a}$ 一阶导数符号，符号\dot{a}，如：$\dot{a}$ 二阶导数符号，符号\ddot{a}，如：$\ddot{a}$ 上箭头，符号：\uparrow，如：$\uparrow$ 上箭头，符号：\Uparrow，如：$\Uparrow$ 下箭头，符号：\downarrow，如：$\downarrow$ 下箭头，符号：\Downarrow，如：$\Downarrow$ 左箭头，符号：\leftarrow，如：$\leftarrow$ 左箭头，符号：\Leftarrow，如：$\Leftarrow$ 右箭头，符号：\rightarrow，如：$\rightarrow$ 右箭头，符号：\Rightarrow，如：$\Rightarrow$ 底端对齐的省略号，符号：\ldots，如：$1,2,\ldots,n$ 中线对齐的省略号，符号：\cdots，如：$x_1^2 + x_2^2 + \cdots + x_n^2$ 竖直对齐的省略号，符号：\vdots，如：$\vdots$ 斜对齐的省略号，符号：\ddots，如：$\ddots$ 希腊字母 字母	实现	字母	实现 A	A	α	\alhpa B	B	β	\beta Γ	\Gamma	γ	\gamma Δ	\Delta	δ	\delta E	E	ϵ	\epsilon Z	Z	ζ	\zeta H	H	η	\eta Θ	\Theta	θ	\theta I	I	ι	\iota K	K	κ	\kappa Λ	\Lambda	λ	\lambda M	M	μ	\mu N	N	ν	\nu Ξ	\Xi	ξ	\xi O	O	ο	\omicron Π	\Pi	π	\pi P	P	ρ	\rho Σ	\Sigma	σ	\sigma T	T	τ	\tau Υ	\Upsilon	υ	\upsilon Φ	\Phi	ϕ	\phi X	X	χ	\chi Ψ	\Psi	ψ	\psi Ω	\v	ω	\omega 引用文章 https://www.
+  
+  <div class="read-more-link">
+    <a href="/public/hugo/markdown/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">Read More…</a>
+  </div>
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="https://hlcooll.github.io/public/mysql/error/error-server_has_gone_away/">ERROR Server_has_gone_away</a>
+  </h1>
+  <time datetime="2020-10-16T16:52:40&#43;0800" class="post-date">Fri, Oct 16, 2020</time>
+  MySQL server has gone away 问题的解决方法 mysql出现ERROR : (2006, &lsquo;MySQL server has gone away&rsquo;) 的问题意思就是指client和MySQL server之间的链接断开了。 造成这样的原因一般是sql操作的时间过长，或者是传送的数据太大(例如使用insert &hellip; values的语句过长， 这种情况可以通过修改max_allowed_packed的配置参数来避免，也可以在程序中将数据分批插入)。 产生这个问题的原因有很多，总结下网上的分析：
+原因一. MySQL 服务宕了 判断是否属于这个原因的方法很简单，进入mysql控制台，查看mysql的运行时长
+mysql&gt; show global status like 'uptime'; +---------------+---------+ | Variable_name | Value | +---------------+---------+ | Uptime | 3414707 | +---------------+---------+ 1 row in set或者查看MySQL的报错日志，看看有没有重启的信息 如果uptime数值很大，表明mysql服务运行了很久了。说明最近服务没有重启过。 如果日志没有相关信息，也表名mysql服务最近没有重启过，可以继续检查下面几项内容。
+原因二. mysql连接超时 即某个mysql长连接很久没有新的请求发起，达到了server端的timeout，被server强行关闭。 此后再通过这个connection发起查询的时候，就会报错server has gone away （大部分PHP脚本就是属于此类）
+mysql&gt; show global variables like '%timeout'; +----------------------------+----------+ | Variable_name | Value | +----------------------------+----------+ | connect_timeout | 10 | | delayed_insert_timeout | 300 | | innodb_lock_wait_timeout | 50 | | innodb_rollback_on_timeout | OFF | | interactive_timeout | 28800 | | lock_wait_timeout | 31536000 | | net_read_timeout | 30 | | net_write_timeout | 60 | | slave_net_timeout | 3600 | | wait_timeout | 28800 | +----------------------------+----------+ 10 rows in set wait_timeout 是28800秒，即mysql链接在无操作28800秒后被自动关闭
+  
+  <div class="read-more-link">
+    <a href="/public/mysql/error/error-server_has_gone_away/">Read More…</a>
+  </div>
+  
+</article><article class="post">
+  <h1 class="post-title">
     <a href="https://hlcooll.github.io/public/kubernetes/helm/graylogs/">Graylogs</a>
   </h1>
   <time datetime="2020-10-16T10:12:53&#43;0800" class="post-date">Fri, Oct 16, 2020</time>
-  #mongodb
-# Warning FailedCreate 30s (x14 over 71s) statefulset-controller create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod &quot;mongodb-replicaset-1602575807-0&quot; is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1 helm fetch stable/mongodb-replicaset kubectl create namespace mongodb helm install mongodb-replicaset --namespace &quot;graylog&quot; -n &quot;mongodb&quot; stable/mongodb-replicaset --set persistentVolume.storageClass=&quot;nfs-client&quot; --set startupProbe.successThreshold=&quot;1&quot; WARNING: This chart is deprecated NAME: mongodb-replicaset LAST DEPLOYED: Fri Oct 16 10:17:48 2020 NAMESPACE: mongodb STATUS: deployed REVISION: 1 NOTES: ******************* ****DEPRECATED***** ******************* * * This chart is deprecated and no longer maintained.
+  mongodb # Warning FailedCreate 30s (x14 over 71s) statefulset-controller create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod &quot;mongodb-replicaset-1602575807-0&quot; is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1 helm fetch stable/mongodb-replicaset kubectl create namespace mongodb helm install mongodb-replicaset --namespace &quot;graylog&quot; -n &quot;mongodb&quot; stable/mongodb-replicaset --set persistentVolume.storageClass=&quot;nfs-client&quot; --set startupProbe.successThreshold=&quot;1&quot; WARNING: This chart is deprecated NAME: mongodb-replicaset LAST DEPLOYED: Fri Oct 16 10:17:48 2020 NAMESPACE: mongodb STATUS: deployed REVISION: 1 NOTES: ******************* ****DEPRECATED***** ******************* * * This chart is deprecated and no longer maintained.
   
   <div class="read-more-link">
     <a href="/public/kubernetes/helm/graylogs/">Read More…</a>
@@ -109,7 +152,7 @@
     <a href="https://hlcooll.github.io/public/hugo/hugo/">HUGO</a>
   </h1>
   <time datetime="2020-09-15T14:37:56&#43;0800" class="post-date">Tue, Sep 15, 2020</time>
-  Hugo 能做什么 通过 Hugo 你可以快速搭建你的静态网站，比如博客系统、文档介绍、公司主页、产品介绍等等。相对于其他静态网站生成器来说，Hugo 具备如下特点： 极快的页面编译生成速度。（ ~1 ms 每页面） 完全跨平台支持，可以运行在 Mac OS X, Linux, Windows, 以及更多! 安装方便 Installation 本地调试 Usage 时通过 LiveReload 自动即时刷新页面。 完全的皮肤支持。 可以部署在任何的支持 HTTP 的服务器上。  Hugo 官方下载地址 https://github.com/gohugoio/hugo/releases Hugo 官网资料 #doc https://gohugo.io/getting-started/installing/ #主题 https://themes.gohugo.io/ Hugo 命令 查看版本 hugo version Hugo 创建 hugo new site hlcooll Hugo 安装主题 # 主题地址https://themes.gohugo.io/hyde/ cd themes/ git clone https://github.com/spf13/hyde.git 修改config.toml baseURL = &quot;https://hlcooll.github.io/&quot; languageCode = &quot;en-us&quot; #HTML的title标题 title = &quot;hlcooll&quot; #主题 theme = &quot;hyde&quot; #侧边栏菜单 [Menus] main = [ {Name = &quot;Github&quot;, URL = &quot;https://github.
+  Hugo 能做什么 通过 Hugo 你可以快速搭建你的静态网站，比如博客系统、文档介绍、公司主页、产品介绍等等。相对于其他静态网站生成器来说，Hugo 具备如下特点： 极快的页面编译生成速度。（ ~1 ms 每页面） 完全跨平台支持，可以运行在 Mac OS X, Linux, Windows, 以及更多! 安装方便 Installation 本地调试 Usage 时通过 LiveReload 自动即时刷新页面。 完全的皮肤支持。 可以部署在任何的支持 HTTP 的服务器上。 Hugo 官方下载地址 https://github.com/gohugoio/hugo/releases Hugo 官网资料 #doc https://gohugo.io/getting-started/installing/ #主题 https://themes.gohugo.io/ Hugo 命令 查看版本 hugo version Hugo 创建 hugo new site hlcooll Hugo 安装主题 # 主题地址https://themes.gohugo.io/hyde/ cd themes/ git clone https://github.com/spf13/hyde.git 修改config.toml baseURL = &quot;https://hlcooll.github.io/&quot; languageCode = &quot;en-us&quot; #HTML的title标题 title = &quot;hlcooll&quot; #主题 theme = &quot;hyde&quot; #侧边栏菜单 [Menus] main = [ {Name = &quot;Github&quot;, URL = &quot;https://github.
   
   <div class="read-more-link">
     <a href="/public/hugo/hugo/">Read More…</a>
@@ -134,7 +177,11 @@
     <a href="https://hlcooll.github.io/public/kubernetes/kubernetes/">Kubernetes</a>
   </h1>
   <time datetime="2020-09-14T17:43:50&#43;0800" class="post-date">Mon, Sep 14, 2020</time>
-  
+  使用 Ctrl+Alt+Del重启电脑
+$$ \mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \
+\frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \
+\frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \
+\end{vmatrix} ${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}} $$
   
 </article><article class="post">
   <h1 class="post-title">

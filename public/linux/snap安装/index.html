@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Hugos &middot; hlcooll</title>
+  <title>Snap安装 &middot; hlcooll</title>
   <meta name="description" content="" />
 
   
@@ -24,7 +24,6 @@
   <link rel="shortcut icon" href="/favicon.png">
 
   
-  <link href="https://hlcooll.github.io/public/hugo/index.xml" rel="alternate" type="application/rss+xml" title="hlcooll" />
   
 </head>
 
@@ -50,15 +49,38 @@
 </aside>
 
     <main class="content container">
-    <ul class="posts">
-<li>
-    <span><a href="https://hlcooll.github.io/public/hugo/markdown/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">Markdown数学公式</a> <time class="pull-right post-list" datetime="2020-10-19T15:45:44&#43;0800">Mon, Oct 19, 2020</time></span>
-  </li><li>
-    <span><a href="https://hlcooll.github.io/public/hugo/archetypes-new/">Archetypes New</a> <time class="pull-right post-list" datetime="2020-10-10T13:54:11&#43;0800">Sat, Oct 10, 2020</time></span>
-  </li><li>
-    <span><a href="https://hlcooll.github.io/public/hugo/hugo/">HUGO</a> <time class="pull-right post-list" datetime="2020-09-15T14:37:56&#43;0800">Tue, Sep 15, 2020</time></span>
-  </li>
-</ul>
+    <div class="post">
+  <h1>Snap安装</h1>
+  <time datetime=2020-10-19T16:52:16&#43;0800 class="post-date">Mon, Oct 19, 2020</time>
+  <h3 id="centos7安装snap">centos7安装snap</h3>
+<pre><code>#添加epel存储库并安装copr yum插件开始安装
+sudo yum install epel-release
+sudo yum install yum-plugin-copr
+#添加仓库
+sudo yum copr enable ngompa/snapcore-el7
+#安装
+sudo yum -y install snapd
+
+sudo systemctl enable --now snapd.socket
+sudo ln -s /var/lib/snapd/snap /snap
+
+snap --help
+</code></pre><h3 id="centos8安装snap">centos8安装snap</h3>
+<pre><code>#添加EPEL存储库
+sudo dnf -y install https://dl.Fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+#
+sudo dnf -y upgrade
+
+sudo dnf -y install snapd
+
+sudo systemctl enable --now snapd.socket
+sudo ln -s /var/lib/snapd/snap /snap
+
+snap --help
+</code></pre>
+</div>
+
+
     </main>
 
     

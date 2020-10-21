@@ -52,7 +52,7 @@
     <div class="post">
   <h1>Graylogs</h1>
   <time datetime=2020-10-16T10:12:53&#43;0800 class="post-date">Fri, Oct 16, 2020</time>
-  <p>#mongodb</p>
+  <h3 id="mongodb">mongodb</h3>
 <pre><code>#  Warning  FailedCreate      30s (x14 over 71s)  statefulset-controller  create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod &quot;mongodb-replicaset-1602575807-0&quot; is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1
 
 helm fetch  stable/mongodb-replicaset
@@ -93,7 +93,7 @@ NOTES:
 
     $ kubectl exec --namespace mongodb POD_NAME -- mongo --eval=&quot;rs.slaveOk(); db.test.find().forEach(printjson)&quot;
 
-</code></pre><h1 id="graylog-create">graylog create</h1>
+</code></pre><h3 id="graylog-create">graylog create</h3>
 <pre><code>#GRAYLOG_HTTP_EXTERNAL_URI  html重定向路径
       containers:
         - name: graylog-master

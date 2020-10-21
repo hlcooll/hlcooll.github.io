@@ -5,7 +5,7 @@ draft: true
 
 ---
 
-#mongodb
+### mongodb
 
 ```
 #  Warning  FailedCreate      30s (x14 over 71s)  statefulset-controller  create Pod mongodb-replicaset-1602575807-0 in StatefulSet mongodb-replicaset-1602575807 failed error: Pod "mongodb-replicaset-1602575807-0" is invalid: spec.containers[0].startupProbe.successThreshold: Invalid value: 2: must be 1
@@ -52,7 +52,7 @@ NOTES:
 
 ```
 
-# graylog create
+### graylog create
 ```
 #GRAYLOG_HTTP_EXTERNAL_URI  html重定向路径
       containers:

@@ -60,26 +60,25 @@
 本地调试 Usage 时通过 LiveReload 自动即时刷新页面。
 完全的皮肤支持。
 可以部署在任何的支持 HTTP 的服务器上。
-</code></pre>
-<h1 id="hugo-官方下载地址">Hugo 官方下载地址</h1>
+</code></pre><h1 id="hugo-官方下载地址">Hugo 官方下载地址</h1>
 <pre><code>https://github.com/gohugoio/hugo/releases
-</code></pre><h1 id="hugo-官网资料">Hugo 官网资料</h1>
+</code></pre><h4 id="hugo-官网资料">Hugo 官网资料</h4>
 <pre><code>#doc
 https://gohugo.io/getting-started/installing/
 #主题
 https://themes.gohugo.io/
-</code></pre><h1 id="hugo-命令">Hugo 命令</h1>
+</code></pre><h4 id="hugo-命令">Hugo 命令</h4>
 <pre><code>查看版本
 hugo version
 
-</code></pre><h1 id="hugo-创建">Hugo 创建</h1>
+</code></pre><h4 id="hugo-创建">Hugo 创建</h4>
 <pre><code>hugo new site hlcooll
-</code></pre><h1 id="hugo-安装主题">Hugo 安装主题</h1>
+</code></pre><h4 id="hugo-安装主题">Hugo 安装主题</h4>
 <pre><code># 主题地址https://themes.gohugo.io/hyde/
 cd themes/
 git clone https://github.com/spf13/hyde.git
 
-</code></pre><h1 id="修改configtoml">修改config.toml</h1>
+</code></pre><h4 id="修改configtoml">修改config.toml</h4>
 <pre><code>baseURL = &quot;https://hlcooll.github.io/&quot;
 languageCode = &quot;en-us&quot;
 #HTML的title标题
@@ -103,7 +102,7 @@ theme = &quot;hyde&quot;
   #谷歌分析跟踪代码 https://analytics.google.com/
   googleAnalytics = &quot;UA-180227187-1&quot;
 
-</code></pre><h1 id="sticky-sidebar-content">Sticky sidebar content</h1>
+</code></pre><h4 id="sticky-sidebar-content">Sticky sidebar content</h4>
 <pre><code>&lt;!-- Default sidebar --&gt;
 &lt;div class=&quot;sidebar&quot;&gt;
   &lt;div class=&quot;container sidebar-sticky&quot;&gt;
@@ -118,14 +117,14 @@ theme = &quot;hyde&quot;
   &lt;/div&gt;
 &lt;/div&gt;
 
-</code></pre><h1 id="hugo-启动服务">Hugo 启动服务</h1>
+</code></pre><h4 id="hugo-启动服务">Hugo 启动服务</h4>
 <pre><code>hugo server --theme=hyde --port 1314 --buildDrafts
 hugo server -t hyde --port 1333 --buildDrafts
 hugo server --theme=hyde --buildDrafts --watch
-</code></pre><h1 id="hugo-生成静态文件">Hugo 生成静态文件</h1>
+</code></pre><h4 id="hugo-生成静态文件">Hugo 生成静态文件</h4>
 <pre><code>// baseurl 需要修改为自己的page地址,hyde当前使用的hugo主题！生成静态文件public
 hugo --theme=hyde --buildDrafts --baseUrl=&quot;https://hlcooll.github.io/public/&quot;
-</code></pre><h1 id="hugo-上传github">Hugo 上传github</h1>
+</code></pre><h4 id="hugo-上传github">Hugo 上传github</h4>
 <pre><code>#Github pages 
 https://pages.github.com/
 
@@ -135,7 +134,7 @@ git commit -m &quot;updates $(date)&quot;
 
 git push origin master
 
-</code></pre><h1 id="hugo-创建日志">Hugo 创建日志</h1>
+</code></pre><h4 id="hugo-创建日志">Hugo 创建日志</h4>
 <pre><code>hugo new kubernetes/k8s-Affinity.md
 
 </code></pre>
